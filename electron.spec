@@ -36,6 +36,9 @@ and Chromium and is used in the Atom editor.
 %{__unzip} %{SOURCE2}
 %endif
 
+# remove empty locales
+find locales -size 0 | xargs rm -v
+
 %install
 rm -rf $RPM_BUILD_ROOT
 
