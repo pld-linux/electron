@@ -1,6 +1,6 @@
-
 # TODO:
-#	- build from source (the process and deps look like hell)
+# - build from source (the process and deps look like hell)
+#   https://github.com/atom/electron/blob/v0.36.0/docs/development/build-instructions-linux.md
 
 Summary:	Framework cross-platform desktop applications using JavaScript, HTML and CSS
 Name:		electron
@@ -29,29 +29,25 @@ and Chromium and is used in the Atom editor.
 
 %prep
 %setup -qcT
-
 %ifarch %{ix86}
-unzip %{SOURCE1}
+%{__unzip} %{SOURCE1}
 %endif
 %ifarch %{x8664}
-unzip %{SOURCE2}
+%{__unzip} %{SOURCE2}
 %endif
-
-%build
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
 # make install repeatable
-rm -f debug*.list 2>/dev/null || :
+rm -f debug*.list
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_libdir}/%{name}}
-cp -a * $RPM_BUILD_ROOT%{_libdir}/%{name}
+cp -a . $RPM_BUILD_ROOT%{_libdir}/%{name}
+ln -s %{_libdir}/%{name}/%{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
 
-rm $RPM_BUILD_ROOT%{_libdir}/%{name}/LICENSE*
-rm $RPM_BUILD_ROOT%{_libdir}/%{name}/libgcrypt*
-
-ln -sf %{_libdir}/%{name}/%{name} $RPM_BUILD_ROOT%{_bindir}/%{name}
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/LICENSE*
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/%{name}/libgcrypt*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
