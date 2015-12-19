@@ -1,6 +1,9 @@
 # TODO:
 # - build from source (the process and deps look like hell)
 #   https://github.com/atom/electron/blob/v0.36.0/docs/development/build-instructions-linux.md
+# NOTES:
+# - space considerations: ~25GiB for build
+#
 
 Summary:	Framework cross-platform desktop applications using JavaScript, HTML and CSS
 Name:		electron
@@ -8,14 +11,9 @@ Version:	0.36.0
 Release:	0.1
 License:	MIT, BSD
 Group:		Applications
-#Source0:	https://github.com/atom/electron/archive/v%{version}/%{name}-%{version}.tar.gz
-## Source0-md5:	0c20e4676d7aef091521c9264d58939a
-Source1:	https://github.com/atom/electron/releases/download/v%{version}/%{name}-v%{version}-linux-ia32.zip
-# Source1-md5:	1272f2a7330341f86cd8be1cce14afc9
-Source2:	https://github.com/atom/electron/releases/download/v%{version}/%{name}-v%{version}-linux-x64.zip
-# Source2-md5:	1c77028a12330b4883fe93eea82c0b63
 URL:		https://github.com/atom/electron
-BuildRequires:	unzip
+BuildRequires:	git-core
+BuildRequires:	npm
 ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -29,15 +27,7 @@ and Chromium and is used in the Atom editor.
 
 %prep
 %setup -qcT
-%ifarch %{ix86}
-%{__unzip} %{SOURCE1}
-%endif
-%ifarch %{x8664}
-%{__unzip} %{SOURCE2}
-%endif
-
-# remove empty locales
-find locales -size 0 | xargs rm -v
+git clone https://github.com/atom/electron.git -b v%{version} --depth 1 .
 
 %install
 rm -rf $RPM_BUILD_ROOT
