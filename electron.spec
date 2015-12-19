@@ -35,6 +35,11 @@ git clone https://github.com/atom/electron.git -b v%{version} --depth 1 .
 install -d lib
 ln -s %{_libdir}/libncurses.so.5 lib/libtinfo.so.5
 
+%build
+export LD_LIBRARY_PATH=`pwd`/lib
+
+./script/build.py -c R
+
 %install
 rm -rf $RPM_BUILD_ROOT
 
