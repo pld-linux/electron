@@ -13,6 +13,7 @@ License:	MIT, BSD
 Group:		Applications
 URL:		https://github.com/atom/electron
 BuildRequires:	git-core
+BuildRequires:	ncurses
 BuildRequires:	npm
 ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -28,6 +29,11 @@ and Chromium and is used in the Atom editor.
 %prep
 %setup -qcT
 git clone https://github.com/atom/electron.git -b v%{version} --depth 1 .
+
+./script/bootstrap.py -v
+
+install -d lib
+ln -s %{_libdir}/libncurses.so.5 lib/libtinfo.so.5
 
 %install
 rm -rf $RPM_BUILD_ROOT
