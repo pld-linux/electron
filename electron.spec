@@ -60,7 +60,7 @@ and Chromium and is used in the Atom editor.
 %setup -qcT
 git clone https://github.com/atom/electron.git -b v%{version} --depth 1 .
 
-./script/bootstrap.py -v
+./script/bootstrap.py -v --clang_dir %{_prefix}
 
 install -d lib
 ln -s %{_libdir}/libncurses.so.5 lib/libtinfo.so.5
