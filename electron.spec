@@ -25,7 +25,7 @@ BuildRequires:	libcap-devel
 BuildRequires:	libgnome-keyring-devel
 BuildRequires:	libnotify-devel
 BuildRequires:	ncurses
-BuildRequires:	npm
+BuildRequires:	npm >= 3
 BuildRequires:	nss-devel
 BuildRequires:	python >= 1:2.7
 BuildRequires:	xorg-app-iceauth
