@@ -1,20 +1,50 @@
 # TODO:
 # - build from source (the process and deps look like hell)
-#   https://github.com/atom/electron/blob/v0.36.0/docs/development/build-instructions-linux.md
+#   https://github.com/electron/electron/blob/v1.4.3/docs/development/build-instructions-linux.md
 # NOTES:
-# - space considerations: ~25GiB for build
+# - At least 25GB disk space and 8GB RAM.
 #
 
 Summary:	Framework cross-platform desktop applications using JavaScript, HTML and CSS
 Name:		electron
-Version:	0.36.0
+Version:	1.4.3
 Release:	0.1
 License:	MIT, BSD
 Group:		Applications
 URL:		https://github.com/atom/electron
+BuildRequires:	GConf2-devel
+BuildRequires:	alsa-lib-devel
+BuildRequires:	bison
+BuildRequires:	clang
+BuildRequires:	cups-devel
+BuildRequires:	dbus-devel
 BuildRequires:	git-core
+BuildRequires:	gperf
+BuildRequires:	gtk+2-devel
+BuildRequires:	libcap-devel
+BuildRequires:	libgnome-keyring-devel
+BuildRequires:	libnotify-devel
 BuildRequires:	ncurses
 BuildRequires:	npm
+BuildRequires:	nss-devel
+BuildRequires:	python >= 1:2.7
+BuildRequires:	xorg-app-iceauth
+BuildRequires:	xorg-app-rgb
+BuildRequires:	xorg-app-sessreg
+BuildRequires:	xorg-app-xgamma
+BuildRequires:	xorg-app-xhost
+BuildRequires:	xorg-app-xinput
+BuildRequires:	xorg-app-xkill
+BuildRequires:	xorg-app-xmodmap
+BuildRequires:	xorg-app-xrandr
+BuildRequires:	xorg-app-xrandr
+BuildRequires:	xorg-app-xrefresh
+BuildRequires:	xorg-app-xset
+BuildRequires:	xorg-app-xsetpointer
+BuildRequires:	xorg-app-xsetroot
+BuildRequires:	xorg-app-xstdcmap
+BuildRequires:	xorg-lib-libXrandr-devel
+BuildRequires:	xorg-lib-libXtst-devel
 ExclusiveArch:	%{ix86} %{x8664}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
